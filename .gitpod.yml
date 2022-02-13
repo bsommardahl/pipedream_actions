@@ -1,0 +1,4 @@
+# Commands to start on workspace startup
+tasks:
+  - before: curl https://cli.pipedream.com/install | sudo sh
+  - before: mkdir ~/.config/pipedream && echo "api_key = $PIPEDREAM_API_KEY" > ~/.config/pipedream/config
