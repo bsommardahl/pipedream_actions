@@ -1,10 +1,11 @@
-const table_name = "octomedia_orders";
+const { createOrder } = require("./orders");
+const { work } = require("./db");
 
 module.exports = {
   name: "Create Order",
   description: "Creates an OctoMedia order in the database.",
   key: "create_order",
-  version: "0.0.1",
+  version: "0.0.3",
   type: "action",
   props: {
     postgresql: {
@@ -83,57 +84,8 @@ module.exports = {
     },
   },
   async run() {
-    const pg = require("pg");
-    const knex = await require("knex")({
-      client: "postgres",
-      connection: this.postgresql.$auth,
+    return await work(this.postgresql.$auth)(async (db) => {
+      return await createOrder(db, this);
     });
-
-    let result = false;
-
-    // if (this.orderId) {
-    //   result = await updateOrder(knex, this.orderId, this);
-    // } else {
-    result = await createOrder(knex, this);
-    // }
-
-    await knex.destroy();
-
-    return result;
   },
 };
-
-function cleanObj(obj) {
-  const res = {
-    id: obj.id,
-    duration: obj.duration,
-    clientId: obj.clientId,
-    dropBoxUrl: obj.dropBoxUrl,
-    transcriptId: obj.transcriptId,
-    filename: obj.filename,
-    aspect: obj.aspect,
-    dropBoxId: obj.dropBoxId,
-    orderDriveFolderId: obj.orderDriveFolderId,
-    orderDriveVideoId: obj.orderDriveVideoId,
-    trelloCardUrl: obj.trelloCardUrl,
-    workStarted: obj.workStarted,
-    workEnded: obj.workEnded,
-    paidOn: obj.paidOn,
-    clipOrder: obj.clipOrder,
-  };
-  return res;
-}
-async function createOrder(knex, obj) {
-  const cleaned = cleanObj(obj);
-  cleaned.created = new Date();
-  const res = await knex(table_name).insert(cleaned).returning("*");
-  return res[0];
-}
-
-// async function updateOrder(knex, id, obj) {
-//   const res = await knex(table_name)
-//     .where("id", "=", id)
-//     .update(cleanObj(obj))
-//     .returning("*");
-//   return res[0];
-// }

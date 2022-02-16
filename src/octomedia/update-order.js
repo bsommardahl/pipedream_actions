@@ -1,10 +1,12 @@
+const { updateOrder } = require("./orders");
+
 const table_name = "octomedia_orders";
 
 module.exports = {
   name: "Update Order",
   description: "Updates an OctoMedia order in the database.",
   key: "update_order",
-  version: "0.0.4",
+  version: "0.0.6",
   type: "action",
   props: {
     postgresql: {
@@ -38,40 +40,8 @@ module.exports = {
     },
   },
   async run() {
-    const pg = require("pg");
-    const knex = await require("knex")({
-      client: "postgres",
-      connection: this.postgresql.$auth,
+    return await work(this.postgresql.$auth)(async (db) => {
+      return updateOrder(db, this.id, this);
     });
-
-    let result = false;
-    result = await updateOrder(knex, this.id, this);
-
-    await knex.destroy();
-
-    return result;
   },
 };
-
-function cleanObj(obj) {
-  const res = {
-    workStarted: obj.workStarted,
-    workEnded: obj.workEnded,
-    paidOn: obj.paidOn,
-    clipOrder: obj.clipOrder,
-  };
-  Object.keys(res).forEach((key) => {
-    if (res[key] === undefined) {
-      delete res[key];
-    }
-  });
-  return res;
-}
-
-async function updateOrder(knex, id, obj) {
-  const res = await knex(table_name)
-    .where("id", "=", id)
-    .update(cleanObj(obj))
-    .returning("*");
-  return res[0];
-}

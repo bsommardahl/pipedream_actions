@@ -1,0 +1,24 @@
+{
+  "name": "pipedream_actions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bsommardahl/pipedream_actions.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bsommardahl/pipedream_actions/issues"
+  },
+  "homepage": "https://github.com/bsommardahl/pipedream_actions#readme",
+  "dependencies": {
+    "jest": "^27.5.1",
+    "knex": "^1.0.3",
+    "pg": "^8.7.3"
+  }
+}

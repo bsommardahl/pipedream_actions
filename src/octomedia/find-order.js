@@ -1,8 +1,11 @@
+const { work } = require("./db");
+const { findOrder } = require("./orders");
+
 module.exports = {
   name: "Find Order",
   description: "Finds an OctoMedia order by one of many properties.",
   key: "find_order",
-  version: "0.0.3",
+  version: "0.0.5",
   type: "action",
   props: {
     postgresql: {
@@ -51,35 +54,8 @@ module.exports = {
     },
   },
   async run() {
-    return await step({ postgresql: this.postgresql.$auth }, this);
+    return await work(this.postgresql.$auth)(async (db) => {
+      return await findOrder(db, this);
+    });
   },
 };
-
-async function step(auths, params) {
-  const table_name = "clients";
-  const pg = require("pg");
-  const knex = await require("knex")({
-    client: "postgres",
-    connection: auths.postgresql,
-  });
-
-  let key = false;
-  let value = false;
-
-  if (!params.id) {
-    key = "id";
-    value = params.id;
-  } else {
-    key = Object.keys(params).find((key) => params[key]);
-    value = params[key];
-  }
-
-  const where = {};
-  where[key] = value;
-
-  const results = await knex(table_name).where(where).select("*");
-
-  await knex.destroy();
-
-  return results.length > 0 ? results[0] : {};
-}
