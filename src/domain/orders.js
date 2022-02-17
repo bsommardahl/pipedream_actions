@@ -55,7 +55,7 @@ async function findOrder(knex, params) {
     key = "id";
     value = params.id;
   } else {
-    key = Object.keys(params).find((key) => params[key]);
+    key = Object.keys(cleanObj(params)).find((key) => params[key]);
     value = params[key];
   }
 
