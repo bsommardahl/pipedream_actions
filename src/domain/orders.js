@@ -51,7 +51,7 @@ async function findOrder(knex, params) {
   let key = false;
   let value = false;
 
-  if (!params.id) {
+  if (params.id) {
     key = "id";
     value = params.id;
   } else {
