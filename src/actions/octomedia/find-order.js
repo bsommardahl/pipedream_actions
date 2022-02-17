@@ -12,45 +12,31 @@ module.exports = {
       type: "app",
       app: "postgresql",
     },
-    id: {
-      type: "integer",
-      label: "Order ID",
-      optional: true,
-    },
-    dropBoxUrl: {
+    fieldKey: {
       type: "string",
-      label: "Dropbox URL",
-      optional: true,
+      options: [
+        {
+          label: "Order ID",
+          value: "id",
+        },
+        { label: "Dropbox URL", value: "dropBoxUrl" },
+
+        { label: "AssemblyAI Transcript ID", value: "transcriptId" },
+
+        { label: "Media Filename", value: "filename" },
+
+        { label: "Dropbox File ID", value: "dropBoxId" },
+
+        { label: "Order Drive Folder ID", value: "orderDriveFolderId" },
+
+        { label: "Order Drive Media File ID", value: "orderDriveVideoId" },
+
+        { label: "Trello Card URL", value: "trelloCardUrl" },
+      ],
     },
-    transcriptId: {
+    fieldValue: {
       type: "string",
-      label: "AssemblyAI Transcript ID",
-      optional: true,
-    },
-    filename: {
-      type: "string",
-      label: "Media Filename",
-      optional: true,
-    },
-    dropBoxId: {
-      type: "string",
-      label: "Dropbox File ID",
-      optional: true,
-    },
-    orderDriveFolderId: {
-      type: "string",
-      label: "Order Drive Folder ID",
-      optional: true,
-    },
-    orderDriveVideoId: {
-      type: "string",
-      label: "Order Drive Media File ID",
-      optional: true,
-    },
-    trelloCardUrl: {
-      type: "string",
-      label: "Trello Card URL",
-      optional: true,
+      label: "Field Value to Search",
     },
     failIfNoneFound: {
       type: "boolean",
@@ -60,7 +46,7 @@ module.exports = {
   },
   async run() {
     return await work(this.postgresql.$auth, async (db) => {
-      return await findOrder(db, this);
+      return await findOrder(db, this.fieldKey, this.fieldValue, this.failIfNoneFound);
     });
   },
 };
