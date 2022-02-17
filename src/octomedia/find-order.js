@@ -5,7 +5,7 @@ module.exports = {
   name: "Find Order",
   description: "Finds an OctoMedia order by one of many properties.",
   key: "find_order",
-  version: process.env.npm_package_version,
+  version: "9.9.9",
   type: "action",
   props: {
     postgresql: {

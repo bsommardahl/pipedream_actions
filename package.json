@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prepublish": "npm version patch",
+    "bump": "npm version patch",
+    "replace-version": "replace-in-files --string='9.9.9' --replacement='$npm_package_version' 'src/actions/**/*.js'",
     "publish": "./deploy-actions.sh",
     "test": "jest"
   },

@@ -5,7 +5,7 @@ module.exports = {
   name: "Create Client",
   description: "Create an OctoMedia client in the database.",
   key: "create_client",
-  version: process.env.npm_package_version,
+  version: "9.9.9",
   type: "action",
   props: {
     postgresql: {

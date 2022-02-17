@@ -5,7 +5,7 @@ module.exports = {
   name: "Update Order",
   description: "Updates an OctoMedia order in the database.",
   key: "update_order",
-  version: process.env.npm_package_version,
+  version: "9.9.9",
   type: "action",
   props: {
     postgresql: {
