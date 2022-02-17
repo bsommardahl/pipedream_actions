@@ -20,7 +20,8 @@
   },
   "homepage": "https://github.com/bsommardahl/pipedream_actions#readme",
   "devDependencies": {
-    "jest": "^27.5.1"
+    "jest": "^27.5.1",
+    "replace-in-files-cli": "^2.0.0"
   },
   "dependencies": {
     "knex": "^1.0.3",
