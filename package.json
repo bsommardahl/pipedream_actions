@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "bump-actions": "SET $VERSION=\"1.0.$GITHUB_RUN_NUMBER\" && replace-in-files --string='9.9.9' --replacement=$VERION './src/actions/**/*.js'",
+    "bump-actions": "SET $VERSION=\"1.0.$GITHUB_RUN_NUMBER\" && replace-in-files --string='9.9.9' --replacement=$VERSION './src/actions/**/*.js'",
     "publish": "./deploy-actions.sh",
     "test": "jest"
   },
