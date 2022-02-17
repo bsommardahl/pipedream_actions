@@ -17,6 +17,11 @@ module.exports = {
       label: "Order ID",
       optional: false,
     },
+    transcriptId: {
+      type: "string",
+      label: "AssemblyAI Transcript ID",
+      optional: true,
+    },
     workStarted: {
       type: "string",
       label: "Work Started On",
