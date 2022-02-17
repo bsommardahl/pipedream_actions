@@ -20,13 +20,10 @@ jobs:
       - name: Prepare
         run: |
           npm i
+          npm run bump-actions 
       - name: Run Tests
         run: |
           npm t
-      - name: Bump Versions
-        run: |
-          npm run bump 
-          npm run replace-version
       - name: Publish actions
         id: publish
         run: ./deploy-actions.sh
