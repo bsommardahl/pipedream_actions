@@ -1,6 +1,5 @@
 const tables = {
   clients: "clients",
-  orders: "octomedia_orders",
 };
 
 function removeEmpty(obj) {

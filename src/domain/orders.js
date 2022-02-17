@@ -1,3 +1,7 @@
+const tables = {
+  orders: "octomedia_orders",
+};
+
 function cleanObj(obj) {
   const res = {
     id: obj.id,
@@ -31,12 +35,12 @@ function removeEmpty(obj) {
 async function createOrder(knex, toCreate) {
   const cleaned = cleanObj(toCreate);
   cleaned.created = new Date();
-  const res = await knex(table_name).insert(cleaned).returning("*");
+  const res = await knex(tables.orders).insert(cleaned).returning("*");
   return res[0];
 }
 
 async function updateOrder(knex, id, toUpdate) {
-  const res = await knex(table_name)
+  const res = await knex(tables.orders)
     .where("id", "=", id)
     .update(cleanObj(toUpdate))
     .returning("*");
@@ -58,7 +62,7 @@ async function findOrder(knex, params) {
   const where = {};
   where[key] = value;
 
-  const results = await knex(table_name).where(where).select("*");
+  const results = await knex(tables.orders).where(where).select("*");
 
   return results.length > 0 ? results[0] : {};
 }
