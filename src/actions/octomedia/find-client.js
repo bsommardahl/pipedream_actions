@@ -12,20 +12,42 @@ module.exports = {
       type: "app",
       app: "postgresql",
     },
-    clientName: {
+    fieldKey: {
       type: "string",
-      label: "Client Name",
+      options: [
+        {
+          label: "Client ID",
+          value: "id",
+        },
+        { label: "Client Name", value: "name" },
+
+        { label: "Contact Email", value: "contactEmail" },
+      ],
     },
-    create: {
-      type: "boolean",
-      label: "Create If Not Found",
-      optional: true,
-      default: false,
+    fieldValue: {
+      type: "string",
+      label: "Field Value to Search",
+    },
+    noResults: {
+      type: "string",
+      label: "No Results Behavior",
+      options: ["Return", "Fail", "Create"],
+      default: "Return",
     },
   },
   async run() {
     return await work(this.postgresql.$auth, async (db) => {
-      return await findClient(db, this.clientName, this.create);
+      const res = await findClient(
+        db,
+        this.fieldKey,
+        this.fieldValue,
+        this.noResults === "Create"
+      );
+      if (this.noResults === "Fail" && res.length === 0) {
+        console.log(this);
+        throw new Error("No results returned");
+      }
+      return res;
     });
   },
 };

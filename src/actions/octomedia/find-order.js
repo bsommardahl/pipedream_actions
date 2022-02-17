@@ -38,15 +38,25 @@ module.exports = {
       type: "string",
       label: "Field Value to Search",
     },
-    failIfNoneFound: {
-      type: "boolean",
-      label: "Fail if none found?",
-      optional: true,
+    noResults: {
+      type: "string",
+      label: "No Results Behavior",
+      options: ["Return", "Fail"],
+      default: "Return",
     },
   },
   async run() {
     return await work(this.postgresql.$auth, async (db) => {
-      return await findOrder(db, this.fieldKey, this.fieldValue, this.failIfNoneFound);
+      const res = await findOrder(
+        db,
+        this.fieldKey,
+        this.fieldValue        
+      );
+      if (this.noResults === "Fail" && res.length === 0) {
+        console.log(this);
+        throw new Error("No results returned");
+      }
+      return res;
     });
   },
 };

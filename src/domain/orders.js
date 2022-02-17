@@ -47,16 +47,9 @@ async function updateOrder(knex, id, toUpdate) {
   return res[0];
 }
 
-async function findOrder(knex, key, value, failIfNoneFound) {
+async function findOrder(knex, key, value) {
   const where = { [key]: value };
-
   const results = await knex(tables.orders).where(where).select("*");
-
-  if (failIfNoneFound && results.length === 0) {
-    console.log(params);
-    throw new Error("None found.");
-  }
-
   return results;
 }
 
