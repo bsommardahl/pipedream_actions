@@ -24,7 +24,7 @@ module.exports = {
     },
     transcriptId: {
       type: "string",
-      label: "Transcript ID",
+      label: "AssemblyAI Transcript ID",
       optional: true,
     },
     filename: {
@@ -50,6 +50,11 @@ module.exports = {
     trelloCardUrl: {
       type: "string",
       label: "Trello Card URL",
+      optional: true,
+    },
+    failIfNoneFound: {
+      type: "boolean",
+      label: "Fail if none found?",
       optional: true,
     },
   },
