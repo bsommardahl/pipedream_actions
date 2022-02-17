@@ -1,11 +1,11 @@
-const { getClient } = require("./clients");
-const { work } = require("./db");
+const { getClient } = require("../../domain/clients");
+const { work } = require("../../data/db");
 
 module.exports = {
   name: "Get Client",
   description: "Gets an OctoMedia client by ID.",
   key: "get_client",
-  version: "0.0.4",
+  version: "0.0.5",
   type: "action",
   props: {
     postgresql: {
@@ -18,7 +18,7 @@ module.exports = {
     },
   },
   async run() {
-    return await work(this.postgresql.$auth)(async (db) => {
+    return await work(this.postgresql.$auth, async (db) => {
       return await getClient(db, this.id);
     });
   },

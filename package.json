@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "pub": "npm version patch --force && npm publish",
     "test": "jest"
   },
   "repository": {

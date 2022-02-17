@@ -1,11 +1,11 @@
-const { work } = require("./db");
-const { findOrder } = require("./orders");
+const { work } = require("../../data/db");
+const { findOrder } = require("../../domain/orders");
 
 module.exports = {
   name: "Find Order",
   description: "Finds an OctoMedia order by one of many properties.",
   key: "find_order",
-  version: "0.0.5",
+  version: "0.0.6",
   type: "action",
   props: {
     postgresql: {
@@ -54,7 +54,7 @@ module.exports = {
     },
   },
   async run() {
-    return await work(this.postgresql.$auth)(async (db) => {
+    return await work(this.postgresql.$auth, async (db) => {
       return await findOrder(db, this);
     });
   },

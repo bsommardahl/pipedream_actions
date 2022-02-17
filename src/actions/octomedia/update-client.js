@@ -1,5 +1,5 @@
-const { updateClient } = require("./clients");
-const { work } = require("./db");
+const { updateClient } = require("../../domain/clients");
+const { work } = require("../../data/db");
 
 const table_name = "clients";
 
@@ -7,7 +7,7 @@ module.exports = {
   name: "Update Client",
   description: "Updates an OctoMedia client in the database.",
   key: "update_client",
-  version: "0.0.3",
+  version: "0.0.4",
   type: "action",
   props: {
     postgresql: {
@@ -36,7 +36,7 @@ module.exports = {
     },
   },
   async run() {
-    return await work(this.postgresql.$auth)(async (db) => {
+    return await work(this.postgresql.$auth, async (db) => {
       return await updateClient(db, this.id, this);
     });
   },

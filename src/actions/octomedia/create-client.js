@@ -1,11 +1,11 @@
-const { insertClient } = require("./clients");
-const { work } = require("./db");
+const { insertClient } = require("../../domain/clients");
+const { work } = require("../../data/db");
 
 module.exports = {
   name: "Create Client",
   description: "Create an OctoMedia client in the database.",
   key: "create_client",
-  version: "0.0.4",
+  version: "0.0.5",
   type: "action",
   props: {
     postgresql: {
@@ -34,7 +34,7 @@ module.exports = {
     },
   },
   async run() {
-    return await work(this.postgresql.$auth)(async (db) => {
+    return await work(this.postgresql.$auth, async (db) => {
       return await insertClient(db, this);
     });
   },

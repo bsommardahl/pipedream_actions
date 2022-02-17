@@ -7,13 +7,11 @@ async function init(auth) {
   return knex;
 }
 
-async function work(auth) {
+async function work(auth, fun) {
   const db = await init(auth);
-  return async (fun) => {
-    const res = await fun(db);
-    await db.destroy();
-    return res;
-  };
+  const res = await fun(db);
+  await db.destroy();
+  return res;
 }
 
 module.exports = { work };

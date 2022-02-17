@@ -1,4 +1,4 @@
-const { updateOrder } = require("./orders");
+const { updateOrder } = require("../../domain/orders");
 
 const table_name = "octomedia_orders";
 
@@ -6,7 +6,7 @@ module.exports = {
   name: "Update Order",
   description: "Updates an OctoMedia order in the database.",
   key: "update_order",
-  version: "0.0.6",
+  version: "0.0.7",
   type: "action",
   props: {
     postgresql: {
@@ -40,7 +40,7 @@ module.exports = {
     },
   },
   async run() {
-    return await work(this.postgresql.$auth)(async (db) => {
+    return await work(this.postgresql.$auth, async (db) => {
       return updateOrder(db, this.id, this);
     });
   },
