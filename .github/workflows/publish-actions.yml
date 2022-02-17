@@ -27,8 +27,7 @@ jobs:
       - name: Bump Versions
         run: |
           npm run bump 
-          npm run replace-version
-          git commit -am "Applied new version"
+          npm run replace-version          
       - name: Publish actions
         id: publish
         run: ./deploy-actions.sh
