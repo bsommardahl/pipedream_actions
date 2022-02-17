@@ -64,8 +64,10 @@ async function findOrder(knex, params) {
 
   const results = await knex(tables.orders).where(where).select("*");
 
-  if (params.failIfNoneFound && results.length === 0)
+  if (params.failIfNoneFound && results.length === 0){
+    console.log(params);
     throw new Error("None found.");
+  }
 
   return results;
 }
