@@ -5,7 +5,7 @@ module.exports = {
   name: "Find Client",
   description: "Finds an OctoMedia client by name.",
   key: "find_client",
-  version: "0.0.14",
+  version: process.env.npm_package_version,
   type: "action",
   props: {
     postgresql: {

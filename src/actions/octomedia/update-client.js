@@ -1,13 +1,11 @@
 const { updateClient } = require("../../domain/clients");
 const { work } = require("../../data/db");
 
-const table_name = "clients";
-
 module.exports = {
   name: "Update Client",
   description: "Updates an OctoMedia client in the database.",
   key: "update_client",
-  version: "0.0.4",
+  version: process.env.npm_package_version,
   type: "action",
   props: {
     postgresql: {

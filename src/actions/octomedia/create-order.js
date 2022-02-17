@@ -5,7 +5,7 @@ module.exports = {
   name: "Create Order",
   description: "Creates an OctoMedia order in the database.",
   key: "create_order",
-  version: "0.0.4",
+  version: process.env.npm_package_version,
   type: "action",
   props: {
     postgresql: {

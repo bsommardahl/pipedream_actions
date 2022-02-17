@@ -1,12 +1,11 @@
 const { updateOrder } = require("../../domain/orders");
-
-const table_name = "octomedia_orders";
+const { work } = require("../../data/db");
 
 module.exports = {
   name: "Update Order",
   description: "Updates an OctoMedia order in the database.",
   key: "update_order",
-  version: "0.0.7",
+  version: process.env.npm_package_version,
   type: "action",
   props: {
     postgresql: {

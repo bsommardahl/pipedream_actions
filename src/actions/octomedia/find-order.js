@@ -1,11 +1,11 @@
-const { work } = require("../../data/db");
 const { findOrder } = require("../../domain/orders");
+const { work } = require("../../data/db");
 
 module.exports = {
   name: "Find Order",
   description: "Finds an OctoMedia order by one of many properties.",
   key: "find_order",
-  version: "0.0.6",
+  version: process.env.npm_package_version,
   type: "action",
   props: {
     postgresql: {
