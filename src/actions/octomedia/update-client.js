@@ -33,7 +33,7 @@ module.exports = {
       optional: true,
     },
     attribute_logro: {
-      type: "string",
+      type: "boolean",
       label: "Is Logro Client",
       optional: true,
     },
