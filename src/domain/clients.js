@@ -33,7 +33,7 @@ function cleanClientObj(obj) {
 }
 
 async function updateClient(knex, id, obj) {
-  const res = await knex(table_name)
+  const res = await knex(tables.clients)
     .where("id", "=", id)
     .update(cleanClientObj(obj))
     .returning("*");
