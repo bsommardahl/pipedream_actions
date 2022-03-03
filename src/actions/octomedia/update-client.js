@@ -32,6 +32,11 @@ module.exports = {
       label: "Contact Email Address",
       optional: true,
     },
+    attribute_logro: {
+      type: "string",
+      label: "Is Logro Client",
+      optional: true,
+    },
   },
   async run() {
     return await work(this.postgresql.$auth, async (db) => {

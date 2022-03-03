@@ -12,12 +12,21 @@ function removeEmpty(obj) {
 }
 
 function cleanClientObj(obj) {
+  const attributePrefix = "attribute_";
+  const attributes = {};
+  Object.keys(obj)
+    .filter((x) => x.indexOf(attributePrefix) > -1)
+    .forEach((key) => {
+      const newKey = key.replace(attributePrefix, "");
+      attributes[newKey] = obj[key];
+    });
+
   const res = {
     name: obj.clientName,
     contactFirstName: obj.contactFirstName,
     contactLastName: obj.contactLastName,
     contactEmail: obj.contactEmail,
-    attributes: obj.attributes,
+    attributes,
   };
 
   return removeEmpty(res);
