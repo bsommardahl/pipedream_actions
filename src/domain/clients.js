@@ -17,6 +17,7 @@ function cleanClientObj(obj) {
     contactFirstName: obj.contactFirstName,
     contactLastName: obj.contactLastName,
     contactEmail: obj.contactEmail,
+    attributes: obj.attributes,
   };
 
   return removeEmpty(res);
