@@ -61,7 +61,7 @@ async function findClient(knex, fieldKey, fieldValue, createIfNotExist) {
   let clients = await knex(tables.clients).where(searchClient).select("*");
 
   if (createIfNotExist & (clients.length === 0)) {
-    clients = await insertClient(knex, searchClient);
+    clients = [await insertClient(knex, searchClient)];
   }
 
   return clients.length > 0 ? clients[0] : {};
