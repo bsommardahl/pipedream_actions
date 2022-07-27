@@ -22,7 +22,7 @@ function cleanClientObj(obj) {
     });
 
   const res = {
-    name: obj.clientName,
+    name: obj.name,
     contactFirstName: obj.contactFirstName,
     contactLastName: obj.contactLastName,
     contactEmail: obj.contactEmail,
