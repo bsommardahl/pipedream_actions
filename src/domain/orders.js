@@ -4,7 +4,7 @@ const tables = {
 
 function cleanObj(obj) {
   const res = {
-    id: obj.id,
+    // id: obj.id,
     duration: obj.duration,
     clientId: obj.clientId,
     dropBoxUrl: obj.dropBoxUrl,
@@ -20,7 +20,9 @@ function cleanObj(obj) {
     paidOn: obj.paidOn ? new Date(obj.paidOn) : undefined,
     clipOrder: obj.clipOrder,
   };
-  return removeEmpty(res);
+  const clean = removeEmpty(res);
+  console.log("cleaned update", clean);
+  return clean;
 }
 
 function removeEmpty(obj) {
