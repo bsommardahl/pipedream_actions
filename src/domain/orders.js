@@ -15,9 +15,9 @@ function cleanObj(obj) {
     orderDriveFolderId: obj.orderDriveFolderId,
     orderDriveVideoId: obj.orderDriveVideoId,
     trelloCardUrl: obj.trelloCardUrl,
-    workStarted: obj.workStarted,
-    workEnded: obj.workEnded,
-    paidOn: obj.paidOn,
+    workStarted: obj.workStarted ? new Date(obj.workStarted) : undefined,
+    workEnded: obj.workEnded ? new Date(obj.workEnded) : undefined,
+    paidOn: obj.paidOn ? new Date(obj.paidOn) : undefined,
     clipOrder: obj.clipOrder,
   };
   return removeEmpty(res);
