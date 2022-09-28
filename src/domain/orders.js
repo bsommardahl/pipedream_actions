@@ -42,11 +42,12 @@ async function createOrder(knex, toCreate) {
 }
 
 async function updateOrder(knex, id, toUpdate) {
-  console.log("id", id);
+  if (!id) {
+    throw new Error("ID is required.");
+  }
   const res = await knex(tables.orders)
     .where({ id })
     .update(cleanObj(toUpdate))
-    .toString()
     .returning("*");
   return res[0];
 }
