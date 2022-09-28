@@ -42,9 +42,11 @@ async function createOrder(knex, toCreate) {
 }
 
 async function updateOrder(knex, id, toUpdate) {
+  console.log("id", id);
   const res = await knex(tables.orders)
-    .where("id", "=", id)
+    .where({ id })
     .update(cleanObj(toUpdate))
+    .toString()
     .returning("*");
   return res[0];
 }
