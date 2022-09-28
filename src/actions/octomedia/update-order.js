@@ -45,7 +45,7 @@ module.exports = {
   },
   async run() {
     return await work(this.postgresql.$auth, async (db) => {
-      return updateOrder(db, this.id, this);
+      return await updateOrder(db, this.id, this);
     });
   },
 };
