@@ -31,7 +31,7 @@ module.exports = {
     noResults: {
       type: "string",
       label: "No Results Behavior",
-      options: ["Return", "Fail", "Create"],
+      options: ["Return", "Fail"],
       default: "Return",
     },
   },
